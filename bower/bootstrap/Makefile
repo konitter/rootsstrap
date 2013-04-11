@@ -30,7 +30,7 @@ build:
 	@cat js/bootstrap-transition.js js/bootstrap-alert.js js/bootstrap-button.js js/bootstrap-carousel.js js/bootstrap-collapse.js js/bootstrap-dropdown.js js/bootstrap-modal.js js/bootstrap-tooltip.js js/bootstrap-popover.js js/bootstrap-scrollspy.js js/bootstrap-tab.js js/bootstrap-typeahead.js js/bootstrap-affix.js > ${OUTPUT_DIR}js/bootstrap.js
 	@./node_modules/.bin/uglifyjs -nc docs/assets/js/bootstrap.js > ${OUTPUT_DIR}js/bootstrap.min.tmp.js
 	@echo "/**\n* Bootstrap.js v2.3.1 by @fat & @mdo\n* Copyright 2012 Twitter, Inc.\n* http://www.apache.org/licenses/LICENSE-2.0.txt\n*/" > docs/assets/js/copyright.js
-	@cat docs/assets/js/copyright.js ${OUTPUT_DIR}js/bootstrap.min.tmp.js > ../../assets/js/bootstrap.min.js
+	@cat docs/assets/js/copyright.js ${OUTPUT_DIR}js/bootstrap.min.tmp.js > ${OUTPUT_DIR}js/bootstrap.min.js
 	@rm docs/assets/js/copyright.js ${OUTPUT_DIR}js/bootstrap.min.tmp.js
 	@echo "Compiling and minifying javascript...       ${CHECK} Done"
 	@echo "\n${HR}"
@@ -73,9 +73,9 @@ bootstrap-js: bootstrap/js/*.js
 
 bootstrap/js/*.js: js/*.js
 	cat js/bootstrap-transition.js js/bootstrap-alert.js js/bootstrap-button.js js/bootstrap-carousel.js js/bootstrap-collapse.js js/bootstrap-dropdown.js js/bootstrap-modal.js js/bootstrap-tooltip.js js/bootstrap-popover.js js/bootstrap-scrollspy.js js/bootstrap-tab.js js/bootstrap-typeahead.js js/bootstrap-affix.js > ${OUTPUT_DIR}js/bootstrap.js
-	./node_modules/.bin/uglifyjs -nc ${OUTPUT_DIR}assets/js/bootstrap.js > ${OUTPUT_DIR}js/bootstrap.min.tmp.js
-	echo "/*!\n* Bootstrap.js by @fat & @mdo\n* Copyright 2012 Twitter, Inc.\n* http://www.apache.org/licenses/LICENSE-2.0.txt\n*/" > ${OUTPUT_DIR}assets/js/copyright.js
-	cat ${OUTPUT_DIR}assets/js/copyright.js ${OUTPUT_DIR}assets/js/bootstrap.min.tmp.js > ${OUTPUT_DIR}js/bootstrap.min.js
+	./node_modules/.bin/uglifyjs -nc ${OUTPUT_DIR}js/bootstrap.js > ${OUTPUT_DIR}js/bootstrap.min.tmp.js
+	echo "/*!\n* Bootstrap.js by @fat & @mdo\n* Copyright 2012 Twitter, Inc.\n* http://www.apache.org/licenses/LICENSE-2.0.txt\n*/" > ${OUTPUT_DIR}js/copyright.js
+	cat ${OUTPUT_DIR}js/copyright.js ${OUTPUT_DIR}js/bootstrap.min.tmp.js > ${OUTPUT_DIR}js/bootstrap.min.js
 	rm ${OUTPUT_DIR}js/copyright.js ${OUTPUT_DIR}js/bootstrap.min.tmp.js
 
 #
