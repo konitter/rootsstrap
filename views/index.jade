@@ -1,0 +1,24 @@
+.hero-unit
+	h1 #{site_title}
+	p!= intro()
+	button.btn.icon-ok	button text
+.row-fluid
+	section.span8
+		h2 Heading 2
+		p!= section_dummy()
+	aside.span4
+		h2 Heading 2
+		p!= aside_dummy()
+		.tabbable
+			ul.nav.nav-tabs
+				li.active
+					a(href='#1', data-toggle='tab') Section 1
+				li
+					a(href='#2', data-toggle='tab') Section 2
+			.tab-content
+				#1.tab-pane.active
+					p I'm in Section 1.
+				#2.tab-pane
+					p Howdy, I'm in Section 2.
+		a.btn.btn-primary.btn-small.icon-facebook(href='#')  Facebook
+		a.btn.btn-info.btn-small.icon-twitter(href='#')  Twitter
