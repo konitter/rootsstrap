@@ -6,7 +6,9 @@ Rootsstrap
 ## Quick start
 
 1. ``[sudo] npm install -g roots``
-2. ``cd bower/bootstrap; npm install``
-3. ``make bootstrap``
-4. ``cd ../../``
-5. ``roots watch``
+2. ``mkdir my-project; cd my-project``
+3. ``git clone https://github.com/konitter/rootsstrap.git``
+4. ``cd rootsstrap/bower/bootstrap; npm install``
+5. ``make bootstrap``
+6. ``cd ../../``
+7. ``roots watch``
