@@ -1,7 +1,7 @@
 OUTPUT_DIR = ../../assets/
-BOOTSTRAP = ${OUTPUT_DIR}css/src/bootstrap.css
+BOOTSTRAP = ${OUTPUT_DIR}css/bootstrap.css
 BOOTSTRAP_LESS = ./less/bootstrap.less
-BOOTSTRAP_RESPONSIVE = ${OUTPUT_DIR}css/src/bootstrap-responsive.css
+BOOTSTRAP_RESPONSIVE = ${OUTPUT_DIR}css/bootstrap-responsive.css
 BOOTSTRAP_RESPONSIVE_LESS = ./less/responsive.less
 DATE=$(shell date +%I:%M%p)
 CHECK=\033[32m✔\033[39m
@@ -85,11 +85,11 @@ bootstrap/js/*.js: js/*.js
 bootstrap-css: bootstrap/css/*.css
 
 bootstrap/css/*.css: less/*.less
-	./node_modules/.bin/recess --compile ${BOOTSTRAP_LESS} > ${OUTPUT_DIR}css/src/bootstrap.css
-	./node_modules/.bin/recess --compress ${BOOTSTRAP_LESS} > ${OUTPUT_DIR}css/src/bootstrap.min.css
-	./node_modules/.bin/recess --compile ${BOOTSTRAP_RESPONSIVE_LESS} > ${OUTPUT_DIR}css/src/bootstrap-responsive.css
-	./node_modules/.bin/recess --compress ${BOOTSTRAP_RESPONSIVE_LESS} > ${OUTPUT_DIR}css/src/bootstrap-responsive.min.css
-	cat ${OUTPUT_DIR}css/src/bootstrap.min.css ${OUTPUT_DIR}css/src/bootstrap-responsive.min.css > ${OUTPUT_DIR}css/all.css
+	./node_modules/.bin/recess --compile ${BOOTSTRAP_LESS} > ${OUTPUT_DIR}css/bootstrap.css
+	# ./node_modules/.bin/recess --compress ${BOOTSTRAP_LESS} > ${OUTPUT_DIR}css/bootstrap.min.css
+	./node_modules/.bin/recess --compile ${BOOTSTRAP_RESPONSIVE_LESS} > ${OUTPUT_DIR}css/bootstrap-responsive.css
+	# ./node_modules/.bin/recess --compress ${BOOTSTRAP_RESPONSIVE_LESS} > ${OUTPUT_DIR}css/bootstrap-responsive.min.css
+	# cat ${OUTPUT_DIR}css/bootstrap.css ${OUTPUT_DIR}css/bootstrap-responsive.css > ${OUTPUT_DIR}css/all.css
 
 #
 # IMAGES
