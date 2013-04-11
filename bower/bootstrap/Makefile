@@ -1,6 +1,7 @@
-BOOTSTRAP = ./docs/assets/css/bootstrap.css
+OUTPUT_DIR = ../../assets/
+BOOTSTRAP = ${OUTPUT_DIR}css/src/bootstrap.css
 BOOTSTRAP_LESS = ./less/bootstrap.less
-BOOTSTRAP_RESPONSIVE = ./docs/assets/css/bootstrap-responsive.css
+BOOTSTRAP_RESPONSIVE = ${OUTPUT_DIR}css/src/bootstrap-responsive.css
 BOOTSTRAP_RESPONSIVE_LESS = ./less/responsive.less
 DATE=$(shell date +%I:%M%p)
 CHECK=\033[32m✔\033[39m
@@ -22,15 +23,15 @@ build:
 	@./node_modules/.bin/recess --compile ${BOOTSTRAP_RESPONSIVE_LESS} > ${BOOTSTRAP_RESPONSIVE}
 	@echo "Compiling LESS with Recess...               ${CHECK} Done"
 	@node docs/build
-	@cp img/* docs/assets/img/
-	@cp js/*.js docs/assets/js/
-	@cp js/tests/vendor/jquery.js docs/assets/js/
+	@cp img/* ${OUTPUT_DIR}img/
+	@cp js/*.js ${OUTPUT_DIR}js/
+	@cp js/tests/vendor/jquery.js ${OUTPUT_DIR}js/
 	@echo "Compiling documentation...                  ${CHECK} Done"
-	@cat js/bootstrap-transition.js js/bootstrap-alert.js js/bootstrap-button.js js/bootstrap-carousel.js js/bootstrap-collapse.js js/bootstrap-dropdown.js js/bootstrap-modal.js js/bootstrap-tooltip.js js/bootstrap-popover.js js/bootstrap-scrollspy.js js/bootstrap-tab.js js/bootstrap-typeahead.js js/bootstrap-affix.js > docs/assets/js/bootstrap.js
-	@./node_modules/.bin/uglifyjs -nc docs/assets/js/bootstrap.js > docs/assets/js/bootstrap.min.tmp.js
+	@cat js/bootstrap-transition.js js/bootstrap-alert.js js/bootstrap-button.js js/bootstrap-carousel.js js/bootstrap-collapse.js js/bootstrap-dropdown.js js/bootstrap-modal.js js/bootstrap-tooltip.js js/bootstrap-popover.js js/bootstrap-scrollspy.js js/bootstrap-tab.js js/bootstrap-typeahead.js js/bootstrap-affix.js > ${OUTPUT_DIR}js/bootstrap.js
+	@./node_modules/.bin/uglifyjs -nc docs/assets/js/bootstrap.js > ${OUTPUT_DIR}js/bootstrap.min.tmp.js
 	@echo "/**\n* Bootstrap.js v2.3.1 by @fat & @mdo\n* Copyright 2012 Twitter, Inc.\n* http://www.apache.org/licenses/LICENSE-2.0.txt\n*/" > docs/assets/js/copyright.js
-	@cat docs/assets/js/copyright.js docs/assets/js/bootstrap.min.tmp.js > docs/assets/js/bootstrap.min.js
-	@rm docs/assets/js/copyright.js docs/assets/js/bootstrap.min.tmp.js
+	@cat docs/assets/js/copyright.js ${OUTPUT_DIR}js/bootstrap.min.tmp.js > ../../assets/js/bootstrap.min.js
+	@rm docs/assets/js/copyright.js ${OUTPUT_DIR}js/bootstrap.min.tmp.js
 	@echo "Compiling and minifying javascript...       ${CHECK} Done"
 	@echo "\n${HR}"
 	@echo "Bootstrap successfully built at ${DATE}."
@@ -71,12 +72,11 @@ bootstrap: bootstrap-img bootstrap-css bootstrap-js
 bootstrap-js: bootstrap/js/*.js
 
 bootstrap/js/*.js: js/*.js
-	mkdir -p bootstrap/js
-	cat js/bootstrap-transition.js js/bootstrap-alert.js js/bootstrap-button.js js/bootstrap-carousel.js js/bootstrap-collapse.js js/bootstrap-dropdown.js js/bootstrap-modal.js js/bootstrap-tooltip.js js/bootstrap-popover.js js/bootstrap-scrollspy.js js/bootstrap-tab.js js/bootstrap-typeahead.js js/bootstrap-affix.js > bootstrap/js/bootstrap.js
-	./node_modules/.bin/uglifyjs -nc bootstrap/js/bootstrap.js > bootstrap/js/bootstrap.min.tmp.js
-	echo "/*!\n* Bootstrap.js by @fat & @mdo\n* Copyright 2012 Twitter, Inc.\n* http://www.apache.org/licenses/LICENSE-2.0.txt\n*/" > bootstrap/js/copyright.js
-	cat bootstrap/js/copyright.js bootstrap/js/bootstrap.min.tmp.js > bootstrap/js/bootstrap.min.js
-	rm bootstrap/js/copyright.js bootstrap/js/bootstrap.min.tmp.js
+	cat js/bootstrap-transition.js js/bootstrap-alert.js js/bootstrap-button.js js/bootstrap-carousel.js js/bootstrap-collapse.js js/bootstrap-dropdown.js js/bootstrap-modal.js js/bootstrap-tooltip.js js/bootstrap-popover.js js/bootstrap-scrollspy.js js/bootstrap-tab.js js/bootstrap-typeahead.js js/bootstrap-affix.js > ${OUTPUT_DIR}js/bootstrap.js
+	./node_modules/.bin/uglifyjs -nc ${OUTPUT_DIR}assets/js/bootstrap.js > ${OUTPUT_DIR}js/bootstrap.min.tmp.js
+	echo "/*!\n* Bootstrap.js by @fat & @mdo\n* Copyright 2012 Twitter, Inc.\n* http://www.apache.org/licenses/LICENSE-2.0.txt\n*/" > ${OUTPUT_DIR}assets/js/copyright.js
+	cat ${OUTPUT_DIR}assets/js/copyright.js ${OUTPUT_DIR}assets/js/bootstrap.min.tmp.js > ${OUTPUT_DIR}js/bootstrap.min.js
+	rm ${OUTPUT_DIR}js/copyright.js ${OUTPUT_DIR}js/bootstrap.min.tmp.js
 
 #
 # CSS COMPLILE
@@ -85,11 +85,11 @@ bootstrap/js/*.js: js/*.js
 bootstrap-css: bootstrap/css/*.css
 
 bootstrap/css/*.css: less/*.less
-	mkdir -p bootstrap/css
-	./node_modules/.bin/recess --compile ${BOOTSTRAP_LESS} > bootstrap/css/bootstrap.css
-	./node_modules/.bin/recess --compress ${BOOTSTRAP_LESS} > bootstrap/css/bootstrap.min.css
-	./node_modules/.bin/recess --compile ${BOOTSTRAP_RESPONSIVE_LESS} > bootstrap/css/bootstrap-responsive.css
-	./node_modules/.bin/recess --compress ${BOOTSTRAP_RESPONSIVE_LESS} > bootstrap/css/bootstrap-responsive.min.css
+	./node_modules/.bin/recess --compile ${BOOTSTRAP_LESS} > ${OUTPUT_DIR}css/src/bootstrap.css
+	./node_modules/.bin/recess --compress ${BOOTSTRAP_LESS} > ${OUTPUT_DIR}css/src/bootstrap.min.css
+	./node_modules/.bin/recess --compile ${BOOTSTRAP_RESPONSIVE_LESS} > ${OUTPUT_DIR}css/src/bootstrap-responsive.css
+	./node_modules/.bin/recess --compress ${BOOTSTRAP_RESPONSIVE_LESS} > ${OUTPUT_DIR}css/src/bootstrap-responsive.min.css
+	cat ${OUTPUT_DIR}css/src/bootstrap.min.css ${OUTPUT_DIR}css/src/bootstrap-responsive.min.css > ${OUTPUT_DIR}css/all.css
 
 #
 # IMAGES
@@ -98,8 +98,7 @@ bootstrap/css/*.css: less/*.less
 bootstrap-img: bootstrap/img/*
 
 bootstrap/img/*: img/*
-	mkdir -p bootstrap/img
-	cp img/* bootstrap/img/
+	cp img/* ${OUTPUT_DIR}img/
 
 
 #
