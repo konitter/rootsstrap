@@ -36,3 +36,7 @@ nbproject
 .ssh
 node_modules
 
+# for Roots
+Procfile
+server.js
+public
